@@ -4,3 +4,11 @@ export type Product = {
   name: string;
   price: number;
 };
+
+export type ProductListProps = {
+  products: Product[];
+};
+
+export type ProductDetailProps = {
+  product: Product;
+};

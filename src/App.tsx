@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Product } from "./types";
+import Header from "./components/Header";
+import ProductList from "./components/ProductList";
 
 const productEndpoint =
   "https://s3.eu-west-2.amazonaws.com/techassessment.cognitoedu.org/products.json";
@@ -8,6 +10,7 @@ const productEndpoint =
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
   const [errorMessage, setErrorMessage] = useState("");
+
   useEffect(() => {
     async function fetchProducts() {
       try {
@@ -25,15 +28,9 @@ function App() {
 
   return (
     <div className="App">
-      <ul>
-        {errorMessage && <p>{errorMessage}</p>}
-        {products.map((product) => (
-          <li>
-            <p>{product.name}</p>
-            <p>£{product.price}</p>
-          </li>
-        ))}
-      </ul>
+      <Header />
+      {errorMessage && <p>{errorMessage}</p>}
+      <ProductList products={products} />
     </div>
   );
 }
