@@ -7,8 +7,9 @@ export type Product = {
 
 export type ProductListProps = {
   products: Product[];
+  errorMessage: string;
 };
 
 export type ProductDetailProps = {
-  product: Product;
+  products: Product[];
 };

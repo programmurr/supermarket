@@ -1,9 +1,12 @@
+import { Link, Outlet } from "react-router-dom";
+
 export default function Header() {
   return (
     <div>
       <p>Logo</p>
-      <p>Go Shopping Link</p>
-      <p>Basket Link</p>
+      <Link to="/">Home</Link>
+      <Link to="basket">Basket</Link>
+      <Outlet />
     </div>
   );
 }

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
+import { Routes, Route } from "react-router-dom";
 import { Product } from "./types";
 import Header from "./components/Header";
 import ProductList from "./components/ProductList";
+import Basket from "./components/Basket";
+import ProductDetail from "./components/ProductDetail";
+import Error from "./components/Error";
 
 const productEndpoint =
   "https://s3.eu-west-2.amazonaws.com/techassessment.cognitoedu.org/products.json";
@@ -28,9 +31,22 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
-      {errorMessage && <p>{errorMessage}</p>}
-      <ProductList products={products} />
+      <Routes>
+        <Route path="/" element={<Header />}>
+          <Route
+            index
+            element={
+              <ProductList products={products} errorMessage={errorMessage} />
+            }
+          />
+          <Route path="basket" element={<Basket />} />
+          <Route
+            path="products/:id"
+            element={<ProductDetail products={products} />}
+          />
+          <Route path="*" element={<Error />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
