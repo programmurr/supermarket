@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
+import { Routes, Route } from "react-router-dom";
 import { Product } from "./types";
+import Header from "./components/Header";
+import ProductList from "./components/ProductList";
+import Basket from "./components/Basket";
+import ProductDetail from "./components/ProductDetail";
+import Error from "./components/Error";
 
 const productEndpoint =
   "https://s3.eu-west-2.amazonaws.com/techassessment.cognitoedu.org/products.json";
@@ -8,6 +13,7 @@ const productEndpoint =
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
   const [errorMessage, setErrorMessage] = useState("");
+
   useEffect(() => {
     async function fetchProducts() {
       try {
@@ -25,15 +31,22 @@ function App() {
 
   return (
     <div className="App">
-      <ul>
-        {errorMessage && <p>{errorMessage}</p>}
-        {products.map((product) => (
-          <li>
-            <p>{product.name}</p>
-            <p>£{product.price}</p>
-          </li>
-        ))}
-      </ul>
+      <Routes>
+        <Route path="/" element={<Header />}>
+          <Route
+            index
+            element={
+              <ProductList products={products} errorMessage={errorMessage} />
+            }
+          />
+          <Route path="basket" element={<Basket />} />
+          <Route
+            path="products/:id"
+            element={<ProductDetail products={products} />}
+          />
+          <Route path="*" element={<Error />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
