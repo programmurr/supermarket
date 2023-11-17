@@ -8,8 +8,21 @@ export type Product = {
 export type ProductListProps = {
   products: Product[];
   errorMessage: string;
+  handleAddClick: (product: Product) => void;
 };
 
 export type ProductDetailProps = {
   products: Product[];
+  handleAddClick: (product: Product) => void;
+};
+
+export type AddProps = {
+  product: Product;
+  handleAddClick: (product: Product) => void;
+};
+
+export type BasketType = Product[];
+
+export type BasketProps = {
+  basket: BasketType;
 };
