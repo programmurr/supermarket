@@ -31,9 +31,7 @@ function App() {
   }, []);
 
   function handleAddClick(product: Product) {
-    setBasket((oldBasket) => {
-      return [...oldBasket, product];
-    });
+    setBasket((oldBasket) => [...oldBasket, product]);
   }
 
   return (
@@ -59,7 +57,10 @@ function App() {
               />
             }
           />
-          <Route path="basket" element={<Basket basket={basket} />} />
+          <Route
+            path="basket"
+            element={<Basket basket={basket} setBasket={setBasket} />}
+          />
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>

@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type Product = {
   description: string;
   id: number;
@@ -25,4 +27,5 @@ export type BasketType = Product[];
 
 export type BasketProps = {
   basket: BasketType;
+  setBasket: Dispatch<SetStateAction<BasketType>>;
 };
