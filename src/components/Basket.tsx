@@ -1,28 +1,15 @@
 import { Link } from "react-router-dom";
-import _ from "lodash";
-import { BasketProps, Product } from "../types";
+import { useContext } from "react";
+import { BasketContext } from "../context/BasketContext";
+import { BasketContextType } from "../types";
 
-export default function Basket({ basket, setBasket }: BasketProps) {
-  const groupedItems = _.groupBy(basket, "id");
-  const total: number = basket.reduce((accumulator, currentValue) => {
-    return accumulator + currentValue.price;
-  }, 0);
-  const roundedTotal = (Math.round(total * 100) / 100).toFixed(2);
-
-  function handleIncreaseClick(item: Product) {
-    setBasket((oldBasket) => [...oldBasket, item]);
-  }
-  function handleDecreaseClick(item: Product) {
-    setBasket((oldBasket) => {
-      const index = oldBasket.findIndex(
-        (basketItem) => basketItem.id === item.id
-      );
-      if (index > -1) {
-        return [...oldBasket.slice(0, index), ...oldBasket.slice(index + 1)];
-      }
-      return oldBasket;
-    });
-  }
+export default function Basket() {
+  const {
+    groupedItems,
+    handleIncreaseClick,
+    handleDecreaseClick,
+    roundedTotal,
+  } = useContext(BasketContext) as BasketContextType;
 
   return (
     <div>

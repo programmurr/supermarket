@@ -5,7 +5,6 @@ import { ProductListProps } from "../types";
 export default function ProductList({
   products,
   errorMessage,
-  handleAddClick,
 }: ProductListProps) {
   if (errorMessage) {
     return <div>{errorMessage}</div>;
@@ -19,7 +18,7 @@ export default function ProductList({
             <p>{product.name}</p>
             <p>£{product.price}</p>
           </Link>
-          <Add product={product} handleAddClick={handleAddClick} />
+          <Add product={product} />
         </li>
       ))}
     </ul>

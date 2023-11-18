@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, ReactNode } from "react";
+import { Dictionary } from "lodash";
 
 export type Product = {
   description: string;
@@ -10,17 +11,14 @@ export type Product = {
 export type ProductListProps = {
   products: Product[];
   errorMessage: string;
-  handleAddClick: (product: Product) => void;
 };
 
 export type ProductDetailProps = {
   products: Product[];
-  handleAddClick: (product: Product) => void;
 };
 
 export type AddProps = {
   product: Product;
-  handleAddClick: (product: Product) => void;
 };
 
 export type BasketType = Product[];
@@ -28,4 +26,16 @@ export type BasketType = Product[];
 export type BasketProps = {
   basket: BasketType;
   setBasket: Dispatch<SetStateAction<BasketType>>;
+};
+
+export type BasketContextType = {
+  basket: Product[];
+  groupedItems: Dictionary<Product[]>;
+  roundedTotal: string;
+  handleDecreaseClick: (item: Product) => void;
+  handleIncreaseClick: (item: Product) => void;
+};
+
+export type BasketProviderType = {
+  children: ReactNode;
 };
