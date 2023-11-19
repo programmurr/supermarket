@@ -1,11 +1,23 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import _ from "lodash";
+import localStorageCheck from "../components/utils/localStorageCheck";
 import { Product, BasketContextType, BasketProviderType } from "../types";
+
+const basketStore = "cognitoBasket";
 
 export const BasketContext = createContext<BasketContextType | null>(null);
 
 export function BasketProvider({ children }: BasketProviderType) {
   const [basket, setBasket] = useState<Product[]>([]);
+
+  useEffect(() => {
+    if (localStorageCheck()) {
+      const savedBasket = window.localStorage.getItem(basketStore);
+      if (savedBasket) {
+        setBasket(JSON.parse(savedBasket));
+      }
+    }
+  }, []);
 
   const groupedItems = _.groupBy(basket, "id");
 
@@ -16,19 +28,20 @@ export function BasketProvider({ children }: BasketProviderType) {
   const roundedTotal = (Math.round(total * 100) / 100).toFixed(2);
 
   function handleIncreaseClick(item: Product) {
-    setBasket((oldBasket) => [...oldBasket, item]);
+    const newBasket = [...basket, item];
+    setBasket(newBasket);
+    localStorageCheck() &&
+      window.localStorage.setItem(basketStore, JSON.stringify(newBasket));
   }
 
   function handleDecreaseClick(item: Product) {
-    setBasket((oldBasket) => {
-      const index = oldBasket.findIndex(
-        (basketItem) => basketItem.id === item.id
-      );
-      if (index > -1) {
-        return [...oldBasket.slice(0, index), ...oldBasket.slice(index + 1)];
-      }
-      return oldBasket;
-    });
+    const index = basket.findIndex((basketItem) => basketItem.id === item.id);
+    if (index > -1) {
+      const newBasket = [...basket.slice(0, index), ...basket.slice(index + 1)];
+      setBasket(newBasket);
+      localStorageCheck() &&
+        window.localStorage.setItem(basketStore, JSON.stringify(newBasket));
+    }
   }
 
   return (
