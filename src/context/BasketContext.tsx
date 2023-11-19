@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import _ from "lodash";
-import localStorageCheck from "../components/utils/localStorageCheck";
+import localStorageCheck from "../utils/localStorageCheck";
 import { Product, BasketContextType, BasketProviderType } from "../types";
 
 const basketStore = "cognitoBasket";

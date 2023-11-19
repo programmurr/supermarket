@@ -7,6 +7,7 @@ import Basket from "./components/Basket";
 import ProductDetail from "./components/ProductDetail";
 import Error from "./components/Error";
 import { BasketProvider } from "./context/BasketContext";
+import * as S from "./styles/App";
 
 const productEndpoint =
   "https://s3.eu-west-2.amazonaws.com/techassessment.cognitoedu.org/products.json";
@@ -30,7 +31,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <S.App>
       <BasketProvider>
         <Routes>
           <Route path="/" element={<Header />}>
@@ -49,7 +50,7 @@ function App() {
           </Route>
         </Routes>
       </BasketProvider>
-    </div>
+    </S.App>
   );
 }
 
