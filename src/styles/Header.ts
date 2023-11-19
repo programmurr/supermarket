@@ -38,8 +38,8 @@ const Nav = styled.nav`
 
 const Link = styled(NavLink)`
   width: 50%;
-  text-decoration: underline;
   color: #1a96f3;
+  text-decoration: none;
   font-weight: 800;
 
   &.active {
@@ -49,6 +49,10 @@ const Link = styled(NavLink)`
     height: 3rem;
     background: #1a96f3;
     color: white;
+  }
+
+  &:hover {
+    text-decoration: underline;
   }
 `;
 

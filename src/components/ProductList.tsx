@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Add from "./Add";
 import { ProductListProps } from "../types";
+import * as S from "../styles/ProductList";
 
 export default function ProductList({
   products,
@@ -11,16 +12,16 @@ export default function ProductList({
   }
 
   return (
-    <ul>
+    <S.List>
       {products.map((product) => (
-        <li key={`product-${product.id}`}>
-          <Link to={`products/${product.id}`}>
+        <S.ListItem key={`product-${product.id}`}>
+          <S.ListLink to={`products/${product.id}`}>
             <p>{product.name}</p>
             <p>£{product.price}</p>
-          </Link>
+          </S.ListLink>
           <Add product={product} />
-        </li>
+        </S.ListItem>
       ))}
-    </ul>
+    </S.List>
   );
 }
