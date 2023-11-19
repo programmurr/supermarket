@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, ReactNode } from "react";
+import { ReactNode } from "react";
 import { Dictionary } from "lodash";
 
 export type Product = {
@@ -19,13 +19,6 @@ export type ProductDetailProps = {
 
 export type AddProps = {
   product: Product;
-};
-
-export type BasketType = Product[];
-
-export type BasketProps = {
-  basket: BasketType;
-  setBasket: Dispatch<SetStateAction<BasketType>>;
 };
 
 export type BasketContextType = {
