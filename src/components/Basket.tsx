@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { BasketContext } from "../context/BasketContext";
 import { BasketContextType } from "../types";
+import * as ProductListStyles from "../styles/ProductList";
+import * as BasketStyles from "../styles/Basket";
+const S = { ...ProductListStyles, ...BasketStyles };
 
 export default function Basket() {
   const {
@@ -13,26 +15,31 @@ export default function Basket() {
 
   return (
     <div>
-      <ul>
+      <S.List>
         {Object.keys(groupedItems).map((id) => (
-          <li key={`basket-item-${id}`}>
-            <Link to={`../products/${id}`}>
+          <S.ListItem key={`basket-item-${id}`}>
+            <S.ListLink to={`../products/${id}`}>
               <p>{groupedItems[id][0].name}</p>
               <p>£{groupedItems[id][0].price}</p>
-            </Link>
-            <p>Quantity: {groupedItems[id].length}</p>
-            <button onClick={() => handleIncreaseClick(groupedItems[id][0])}>
-              +
-            </button>
-            <button onClick={() => handleDecreaseClick(groupedItems[id][0])}>
-              -
-            </button>
-          </li>
+            </S.ListLink>
+            <S.BasketButtons>
+              <S.QuantityButton
+                onClick={() => handleDecreaseClick(groupedItems[id][0])}
+              >
+                -
+              </S.QuantityButton>
+              <S.BasketQuantity>
+                Quantity: {groupedItems[id].length}
+              </S.BasketQuantity>
+              <S.QuantityButton
+                onClick={() => handleIncreaseClick(groupedItems[id][0])}
+              >
+                +
+              </S.QuantityButton>
+            </S.BasketButtons>
+          </S.ListItem>
         ))}
-      </ul>
-      <div>
-        <p>Total: £{roundedTotal}</p>
-      </div>
+      </S.List>
     </div>
   );
 }

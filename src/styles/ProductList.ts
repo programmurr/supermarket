@@ -7,6 +7,7 @@ const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  justify-content: center;
   padding: 0;
 `;
 
@@ -20,6 +21,7 @@ const ListItem = styled.li`
   align-items: center;
   padding: 1rem 0.5rem;
   border-radius: 2rem;
+  max-width: 325px;
 `;
 
 const ListLink = styled(Link)`

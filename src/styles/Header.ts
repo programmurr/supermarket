@@ -24,6 +24,13 @@ const Logo = styled.img`
   margin-right: 1rem;
 `;
 
+const Total = styled.p`
+  font-size: 1.25rem;
+  span {
+    font-weight: bold;
+  }
+`;
+
 const Nav = styled.nav`
   position: sticky;
   top: 4rem;
@@ -56,4 +63,4 @@ const Link = styled(NavLink)`
   }
 `;
 
-export { Header, Link, Nav, Logo, LogoWrapper, HeaderInfo };
+export { Header, Link, Nav, Logo, LogoWrapper, HeaderInfo, Total };

@@ -14,7 +14,9 @@ export default function Header() {
           <S.Logo src={logo} alt="Cognito Logo" />
           <p>CognitoGO</p>
         </S.LogoWrapper>
-        <p>Basket total: £{roundedTotal}</p>
+        <S.Total>
+          Basket total: <span>£{roundedTotal}</span>
+        </S.Total>
       </S.HeaderInfo>
       <S.Nav>
         <S.Link to="/">Home</S.Link>

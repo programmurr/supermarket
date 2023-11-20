@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import Add from "./Add";
 import { ProductListProps } from "../types";
 import * as S from "../styles/ProductList";
