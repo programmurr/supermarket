@@ -6,12 +6,9 @@ import * as BasketStyles from "../styles/Basket";
 const S = { ...ProductListStyles, ...BasketStyles };
 
 export default function Basket() {
-  const {
-    groupedItems,
-    handleIncreaseClick,
-    handleDecreaseClick,
-    roundedTotal,
-  } = useContext(BasketContext) as BasketContextType;
+  const { groupedItems, handleIncreaseClick, handleDecreaseClick } = useContext(
+    BasketContext
+  ) as BasketContextType;
 
   return (
     <div>

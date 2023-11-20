@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 import Add from "./Add";
 import { ProductDetailProps } from "../types";
+import * as S from "../styles/ProductDetail";
 
 export default function ProductDetail({ products }: ProductDetailProps) {
   const { id } = useParams();
@@ -12,12 +13,14 @@ export default function ProductDetail({ products }: ProductDetailProps) {
 
   if (product) {
     return (
-      <div>
-        <p>{product.name}</p>
-        <p>{product.description}</p>
-        <p>£{product.price}</p>
-        <Add product={product} />
-      </div>
+      <S.DetailContainer>
+        <S.DetailItem>
+          <S.DetailName>{product.name}</S.DetailName>
+          <S.DetailDescription>{product.description}</S.DetailDescription>
+          <S.DetailPrice>£{product.price}</S.DetailPrice>
+          <Add product={product} />
+        </S.DetailItem>
+      </S.DetailContainer>
     );
   }
   return <div>Cannot find product</div>;

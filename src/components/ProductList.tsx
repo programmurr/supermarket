@@ -1,18 +1,24 @@
 import Add from "./Add";
 import { ProductListProps } from "../types";
 import * as S from "../styles/ProductList";
+import { useMemo } from "react";
+import { sortByName } from "../utils/sortItems";
 
 export default function ProductList({
   products,
   errorMessage,
 }: ProductListProps) {
+  const sortedProducts = useMemo(() => {
+    return products.toSorted(sortByName);
+  }, [products]);
+
   if (errorMessage) {
     return <div>{errorMessage}</div>;
   }
 
   return (
     <S.List>
-      {products.map((product) => (
+      {sortedProducts.map((product) => (
         <S.ListItem key={`product-${product.id}`}>
           <S.ListLink to={`products/${product.id}`}>
             <p>{product.name}</p>

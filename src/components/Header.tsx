@@ -19,7 +19,7 @@ export default function Header() {
         </S.Total>
       </S.HeaderInfo>
       <S.Nav>
-        <S.Link to="/">Home</S.Link>
+        <S.Link to="/">Shop</S.Link>
         <S.Link to="basket">Basket</S.Link>
       </S.Nav>
       <Outlet />

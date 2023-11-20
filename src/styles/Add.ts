@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { cognitoBlue } from "./GlobalStyles";
 
 const Button = styled.button`
-  background: #1a96f3;
+  background: ${cognitoBlue};
   color: white;
   width: 50%;
   border: none;

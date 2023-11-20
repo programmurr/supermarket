@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { cognitoBlue } from "./GlobalStyles";
 
 const Header = styled.div``;
 
@@ -35,17 +36,18 @@ const Nav = styled.nav`
   position: sticky;
   top: 4rem;
   width: 100%;
-  border-top: 1px solid #1a96f3;
-  border-bottom: 1px solid #1a96f3;
+  border-top: 1px solid ${cognitoBlue};
+  border-bottom: 1px solid ${cognitoBlue};
   background: white;
   display: flex;
   align-items: center;
   text-align: center;
+  height: 3rem;
 `;
 
 const Link = styled(NavLink)`
   width: 50%;
-  color: #1a96f3;
+  color: ${cognitoBlue};
   text-decoration: none;
   font-weight: 800;
 
@@ -54,7 +56,7 @@ const Link = styled(NavLink)`
     align-items: center;
     justify-content: center;
     height: 3rem;
-    background: #1a96f3;
+    background: ${cognitoBlue};
     color: white;
   }
 
