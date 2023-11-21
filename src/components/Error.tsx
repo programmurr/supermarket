@@ -1,3 +1,9 @@
+import { ErrorContainer } from "../styles/Error";
+
 export default function Error() {
-  return <div>Error 404 Not Found</div>;
+  return (
+    <ErrorContainer>
+      <p className="error">Error 404 Not Found</p>
+    </ErrorContainer>
+  );
 }

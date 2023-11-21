@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Add from "./Add";
 import { ProductDetailProps } from "../types";
 import * as S from "../styles/ProductDetail";
+import { ErrorContainer } from "../styles/Error";
 
 export default function ProductDetail({ products }: ProductDetailProps) {
   const { id } = useParams();
@@ -23,5 +24,9 @@ export default function ProductDetail({ products }: ProductDetailProps) {
       </S.DetailContainer>
     );
   }
-  return <div>Cannot find product</div>;
+  return (
+    <ErrorContainer>
+      <p className="error">Sorry, we cannot find that product</p>
+    </ErrorContainer>
+  );
 }
