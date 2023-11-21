@@ -1,7 +1,12 @@
 import { createContext, useEffect, useState } from "react";
 import _ from "lodash";
-import localStorageCheck from "../components/utils/localStorageCheck";
+import localStorageCheck from "../utils/localStorageCheck";
 import { Product, BasketContextType, BasketProviderType } from "../types";
+
+// Context used as main method of state management. Various components needed various access
+// to data and functions e.g. Header.tsx needing the total and Add.tsx needing the
+// handleIncreaseClick function, so Context was the most convenient way to organize the
+// code and keep it tidy.
 
 const basketStore = "cognitoBasket";
 
@@ -10,7 +15,10 @@ export const BasketContext = createContext<BasketContextType | null>(null);
 export function BasketProvider({ children }: BasketProviderType) {
   const [basket, setBasket] = useState<Product[]>([]);
 
+  // useEffect to sync basket items with local storage to preserve state across
+  // refresh and browser closing.
   useEffect(() => {
+    // Local storage may be disabled so we need to check.
     if (localStorageCheck()) {
       const savedBasket = window.localStorage.getItem(basketStore);
       if (savedBasket) {
@@ -19,7 +27,8 @@ export function BasketProvider({ children }: BasketProviderType) {
     }
   }, []);
 
-  const groupedItems = _.groupBy(basket, "id");
+  // Group for convenient quantity count in basket.
+  const groupedItems = _.groupBy(basket, "name");
 
   const total: number = basket.reduce((accumulator, currentValue: Product) => {
     return accumulator + currentValue.price;
