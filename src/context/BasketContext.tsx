@@ -19,7 +19,7 @@ export function BasketProvider({ children }: BasketProviderType) {
     }
   }, []);
 
-  const groupedItems = _.groupBy(basket, "id");
+  const groupedItems = _.groupBy(basket, "name");
 
   const total: number = basket.reduce((accumulator, currentValue: Product) => {
     return accumulator + currentValue.price;

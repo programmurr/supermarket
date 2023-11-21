@@ -13,29 +13,31 @@ export default function Basket() {
   return (
     <div>
       <S.List>
-        {Object.keys(groupedItems).map((id) => (
-          <S.ListItem key={`basket-item-${id}`}>
-            <S.ListLink to={`../products/${id}`}>
-              <p>{groupedItems[id][0].name}</p>
-              <p>£{groupedItems[id][0].price}</p>
-            </S.ListLink>
-            <S.BasketButtons>
-              <S.QuantityButton
-                onClick={() => handleDecreaseClick(groupedItems[id][0])}
-              >
-                -
-              </S.QuantityButton>
-              <S.BasketQuantity>
-                Quantity: {groupedItems[id].length}
-              </S.BasketQuantity>
-              <S.QuantityButton
-                onClick={() => handleIncreaseClick(groupedItems[id][0])}
-              >
-                +
-              </S.QuantityButton>
-            </S.BasketButtons>
-          </S.ListItem>
-        ))}
+        {Object.keys(groupedItems)
+          .sort()
+          .map((name, index) => (
+            <S.ListItem key={`basket-item-${index}`}>
+              <S.ListLink to={`../products/${groupedItems[name][0].id}`}>
+                <p>{groupedItems[name][0].name}</p>
+                <p>£{groupedItems[name][0].price}</p>
+              </S.ListLink>
+              <S.BasketButtons>
+                <S.QuantityButton
+                  onClick={() => handleDecreaseClick(groupedItems[name][0])}
+                >
+                  -
+                </S.QuantityButton>
+                <S.BasketQuantity>
+                  Quantity: {groupedItems[name].length}
+                </S.BasketQuantity>
+                <S.QuantityButton
+                  onClick={() => handleIncreaseClick(groupedItems[name][0])}
+                >
+                  +
+                </S.QuantityButton>
+              </S.BasketButtons>
+            </S.ListItem>
+          ))}
       </S.List>
     </div>
   );
