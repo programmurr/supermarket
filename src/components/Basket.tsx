@@ -10,6 +10,14 @@ export default function Basket() {
     BasketContext
   ) as BasketContextType;
 
+  if (Object.keys(groupedItems).length === 0) {
+    return (
+      <S.EmptyBasket>
+        <p>There is nothing in your basket.</p>
+        <p>Click the Shop button above to see what we have!</p>
+      </S.EmptyBasket>
+    );
+  }
   return (
     <div>
       <S.List>
