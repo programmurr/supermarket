@@ -3,17 +3,25 @@ import { ProductListProps } from "../types";
 import * as S from "../styles/ProductList";
 import { useMemo } from "react";
 import { sortByName } from "../utils/sortItems";
+import { ErrorContainer } from "../styles/Error";
 
 export default function ProductList({
   products,
   errorMessage,
 }: ProductListProps) {
+  // useMemo used as the products array could be very large and result in an
+  // expensive calculation, so useMemo only runs if the products array
+  // actually changes.
   const sortedProducts = useMemo(() => {
     return products.toSorted(sortByName);
   }, [products]);
 
   if (errorMessage) {
-    return <div>{errorMessage}</div>;
+    return (
+      <ErrorContainer>
+        <p className="error">{errorMessage}</p>
+      </ErrorContainer>
+    );
   }
 
   return (

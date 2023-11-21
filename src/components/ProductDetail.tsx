@@ -8,6 +8,9 @@ import { ErrorContainer } from "../styles/Error";
 export default function ProductDetail({ products }: ProductDetailProps) {
   const { id } = useParams();
 
+  // useMemo used as the products array could be very large and result in an
+  // expensive calculation, so useMemo only runs if the products array
+  // or the product ID change.
   const product = useMemo(() => {
     return products.find((product) => product.id.toString() === id);
   }, [products, id]);

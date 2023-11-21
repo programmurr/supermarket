@@ -4,6 +4,7 @@ import { BasketContext } from "../context/BasketContext";
 import logo from "../assets/images/cognito_logo_brick_small_1.png";
 import { BasketContextType } from "../types";
 import * as S from "../styles/Header";
+// Namespace imports used for CSS to keep Styled Components imports tidy
 
 export default function Header() {
   const { roundedTotal } = useContext(BasketContext) as BasketContextType;

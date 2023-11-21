@@ -15,19 +15,29 @@ const productEndpoint =
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
   const [errorMessage, setErrorMessage] = useState("");
+
+  // useEffect used to sync the App with an external data source.
   useEffect(() => {
+    // Active flag used to prevent race conditions in data fetching
+    let active = true;
     async function fetchProducts() {
+      // try / catch and async/ await used as I find the syntax tidier
       try {
         const response = await fetch(productEndpoint);
         const data: Product[] = await response.json();
-        setProducts(data);
-        setErrorMessage("");
+        if (active) {
+          setProducts(data);
+          setErrorMessage("");
+        }
       } catch (error) {
         setProducts([]);
         setErrorMessage("Error fetching products");
       }
     }
     fetchProducts();
+    return () => {
+      active = false;
+    };
   }, []);
 
   return (
