@@ -19,8 +19,12 @@ export default function Header() {
         </S.Total>
       </S.HeaderInfo>
       <S.Nav>
-        <S.Link to="/">Shop</S.Link>
-        <S.Link to="basket">Basket</S.Link>
+        <S.Link $position="shop" to="/">
+          Shop
+        </S.Link>
+        <S.Link $position="basket" to="basket">
+          Basket
+        </S.Link>
       </S.Nav>
       <Outlet />
     </S.Header>

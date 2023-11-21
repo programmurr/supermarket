@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { cognitoBlue } from "./GlobalStyles";
+import { cognitoBlue, darkBlue, hoverLinkBlue } from "./GlobalStyles";
 
 const List = styled.ul`
   width: 100vw;
@@ -16,6 +16,7 @@ const ListItem = styled.li`
   border: 3px solid ${cognitoBlue};
   margin: 0 1rem 1rem 1rem;
   width: 20%;
+  min-width: 191px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -34,7 +35,7 @@ const ListLink = styled(Link)`
   margin-bottom: 1rem;
   text-decoration: none;
   font-weight: 600;
-  color: ${cognitoBlue};
+  color: ${darkBlue};
 
   p {
     margin: 0;
@@ -42,7 +43,8 @@ const ListLink = styled(Link)`
   }
 
   &:hover {
-    color: #0066ff;
+    color: ${hoverLinkBlue};
+    text-decoration: underline;
   }
 `;
 

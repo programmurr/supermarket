@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { cognitoBlue } from "./GlobalStyles";
+import { cognitoBlue, hoverLinkBlue } from "./GlobalStyles";
 
 const Button = styled.button`
   background: ${cognitoBlue};
@@ -12,7 +12,8 @@ const Button = styled.button`
 
   &:hover {
     cursor: pointer;
-    background: #0066ff;
+    background: ${hoverLinkBlue};
+    text-decoration: underline;
   }
 `;
 

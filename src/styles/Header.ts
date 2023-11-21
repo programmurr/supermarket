@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { cognitoBlue } from "./GlobalStyles";
+import { cognitoBlue, hoverLinkBlue } from "./GlobalStyles";
 
 const Header = styled.div``;
 
@@ -42,26 +42,36 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
   text-align: center;
-  height: 3rem;
 `;
 
-const Link = styled(NavLink)`
+const Link = styled(NavLink)<{ $position?: "shop" | "basket" }>`
+  height: 3rem;
   width: 50%;
   color: ${cognitoBlue};
   text-decoration: none;
   font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: ${(props) =>
+    props.$position === "shop" ? `1px solid ${cognitoBlue}` : 0};
+  border-left: ${(props) =>
+    props.$position === "basket" ? `1px solid ${cognitoBlue}` : 0};
 
   &.active {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 3rem;
     background: ${cognitoBlue};
     color: white;
+    border: none;
   }
 
   &:hover {
     text-decoration: underline;
+    background: ${hoverLinkBlue};
+    color: white;
+    border-right: ${(props) =>
+      props.$position === "shop" ? `1px solid ${hoverLinkBlue}` : 0};
+    border-left: ${(props) =>
+      props.$position === "basket" ? `1px solid ${hoverLinkBlue}` : 0};
   }
 `;
 
