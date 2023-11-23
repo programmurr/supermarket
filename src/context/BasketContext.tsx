@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import _ from "lodash";
 import localStorageCheck from "../utils/localStorageCheck";
 import { Product, BasketContextType, BasketProviderType } from "../types";
+import { testData } from "../utils/test-utils";
 
 // Context used as main method of state management. Various components needed various access
 // to data and functions e.g. Header.tsx needing the total and Add.tsx needing the
@@ -18,11 +19,16 @@ export function BasketProvider({ children }: BasketProviderType) {
   // useEffect to sync basket items with local storage to preserve state across
   // refresh and browser closing.
   useEffect(() => {
-    // Local storage may be disabled so we need to check.
-    if (localStorageCheck()) {
-      const savedBasket = window.localStorage.getItem(basketStore);
-      if (savedBasket) {
-        setBasket(JSON.parse(savedBasket));
+    // Load test data if we are in TEST ENV so we can test the Consumers
+    if (process.env.NODE_ENV === "test") {
+      setBasket(testData);
+    } else {
+      // Local storage may be disabled so we need to check.
+      if (localStorageCheck()) {
+        const savedBasket = window.localStorage.getItem(basketStore);
+        if (savedBasket) {
+          setBasket(JSON.parse(savedBasket));
+        }
       }
     }
   }, []);

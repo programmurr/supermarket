@@ -22,4 +22,16 @@ const QuantityButton = styled(Button)`
   min-width: 3rem;
 `;
 
-export { BasketButtons, QuantityButton, BasketQuantity };
+const EmptyBasket = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+
+  @media (min-width: 600px) {
+    font-size: 1.5rem;
+  }
+`;
+
+export { BasketButtons, QuantityButton, BasketQuantity, EmptyBasket };

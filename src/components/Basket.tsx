@@ -10,6 +10,14 @@ export default function Basket() {
     BasketContext
   ) as BasketContextType;
 
+  if (Object.keys(groupedItems).length === 0) {
+    return (
+      <S.EmptyBasket>
+        <p>There is nothing in your basket.</p>
+        <p>Click the Shop button above to see what we have!</p>
+      </S.EmptyBasket>
+    );
+  }
   return (
     <div>
       <S.List>
@@ -23,6 +31,7 @@ export default function Basket() {
               </S.ListLink>
               <S.BasketButtons>
                 <S.QuantityButton
+                  data-testid={`decrease-button-${index}`}
                   onClick={() => handleDecreaseClick(groupedItems[name][0])}
                 >
                   -
@@ -31,6 +40,7 @@ export default function Basket() {
                   Quantity: {groupedItems[name].length}
                 </S.BasketQuantity>
                 <S.QuantityButton
+                  data-testid={`increase-button-${index}`}
                   onClick={() => handleIncreaseClick(groupedItems[name][0])}
                 >
                   +
