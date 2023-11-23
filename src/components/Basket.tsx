@@ -31,6 +31,7 @@ export default function Basket() {
               </S.ListLink>
               <S.BasketButtons>
                 <S.QuantityButton
+                  data-testid={`decrease-button-${index}`}
                   onClick={() => handleDecreaseClick(groupedItems[name][0])}
                 >
                   -
@@ -39,6 +40,7 @@ export default function Basket() {
                   Quantity: {groupedItems[name].length}
                 </S.BasketQuantity>
                 <S.QuantityButton
+                  data-testid={`increase-button-${index}`}
                   onClick={() => handleIncreaseClick(groupedItems[name][0])}
                 >
                   +
